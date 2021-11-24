@@ -172,7 +172,7 @@ function buildExternalLibraries(settings, fast) {
 
     var cleanup = function() { return cleanShaders(settings); };
     var shaders = function() { return buildShaders(settings); };
-    var buildMin = function() { return buildExternalLibrariesMultiEntry(settings.libraries, settings, true) };
+    // var buildMin = function() { return buildExternalLibrariesMultiEntry(settings.libraries, settings, true) };
     var buildMax = function() { return buildExternalLibrariesMultiEntry(settings.libraries, settings, false) };
 
     var buildAMDDTS = function(cb) { return buildAMDDTSFiles(settings.libraries, settings, cb) };
@@ -185,7 +185,7 @@ function buildExternalLibraries(settings, fast) {
     if (fast) {
         tasks.push(buildMax);
     } else {
-        tasks.push(cleanup, shaders, buildMin, buildMax, buildAMDDTS, processDTS, ...appendLoseDTS);
+        tasks.push(cleanup, shaders, buildMax, buildAMDDTS, processDTS, ...appendLoseDTS);
     }
 
     return gulp.series.apply(this, tasks);

@@ -33,6 +33,8 @@ interface MouseWheelEvent {
     offsetX: any;
     offsetY: any;
     button: any;
+    x: any;
+    y: any;
 }
 
 interface GamepadPose { }
