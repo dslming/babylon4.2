@@ -24,6 +24,7 @@
    </style>
 
   <script src="../dist/preview release/babylon.max.js"></script>
+  <script src="../dist/preview release/gui/babylon.gui.js"></script>
   <canvas id="renderCanvas"></canvas>
 
   <script>
@@ -31,35 +32,80 @@
     var engine = new BABYLON.Engine(canvas, true);
 
     var createScene = function() {
-      // 创建一个基本的Scene对象，用来容纳所有其他对象
       var scene = new BABYLON.Scene(engine);
 
-      // 创建一个相机，设置其位置为(x:0, y:5, z:-10)
       var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 5,-10), scene);
-      // var camera = new BABYLON.UniversalCamera("camera1", new BABYLON.Vector3(0, 0, 10), scene);
-
-      // 相机聚焦在场景原点位置
       camera.setTarget(BABYLON.Vector3.Zero());
-
-      // 使得我们可以控制相机拍摄角度，和three.js中的OrbitsControl效果类似，但简单得多
       camera.attachControl(canvas, false);
-
-      // 创建一个半球形光源,朝向为天空
       var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
-
-      // 创建一个内置的“球”体；其构造函数的参数：名称、宽度、深度、精度，场景，其中精度表示表面细分数。
       var sphere = BABYLON.Mesh.CreateSphere('sphere1', 16, 2, scene);
-
-      // 设置球体位置，使其位于平面之上
       sphere.position.y = 1;
-
-      // 创建一个内置的“地面”形状；其构造函数的5个参数和球体一样
       var ground = BABYLON.Mesh.CreateGround('ground1', 6, 6, 2, scene);
-
       return scene;
     }
-    var scene = createScene();
 
+    // 仪表监视
+    function instrumentation() {
+      // Instrumentation
+      var instrumentation = new BABYLON.EngineInstrumentation(engine);
+      instrumentation.captureGPUFrameTime = true;
+      instrumentation.captureShaderCompilationTime = true;
+      instrumentation.captureActiveMeshesEvaluationTime = true
+
+      // GUI
+      var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
+      var stackPanel = new BABYLON.GUI.StackPanel();
+      stackPanel.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+      stackPanel.isVertical = true;
+      advancedTexture.addControl(stackPanel);
+
+      var text1 = new BABYLON.GUI.TextBlock();
+      text1.text = "";
+      text1.color = "white";
+      text1.fontSize = 16;
+      text1.height = "30px";
+      stackPanel.addControl(text1);
+
+      var text2 = new BABYLON.GUI.TextBlock();
+      text2.text = "";
+      text2.color = "white";
+      text2.fontSize = 16;
+      text2.height = "30px";
+      stackPanel.addControl(text2);
+
+      var text3 = new BABYLON.GUI.TextBlock();
+      text3.text = "";
+      text3.color = "white";
+      text3.fontSize = 16;
+      text3.height = "30px";
+      stackPanel.addControl(text3);
+
+      var text4 = new BABYLON.GUI.TextBlock();
+      text4.text = "";
+      text4.color = "white";
+      text4.fontSize = 16;
+      text4.height = "30px";
+      stackPanel.addControl(text4);
+
+      var text5 = new BABYLON.GUI.TextBlock();
+      text5.text = "";
+      text5.color = "white";
+      text5.fontSize = 16;
+      text5.height = "30px";
+      stackPanel.addControl(text5);
+
+      var i = 0;
+      scene.registerBeforeRender(function () {
+          text1.text = "current frame time (GPU): " + (instrumentation.gpuFrameTimeCounter.current * 0.000001).toFixed(2) + "ms";
+          text2.text = "average frame time (GPU): " + (instrumentation.gpuFrameTimeCounter.average * 0.000001).toFixed(2) + "ms";
+          text3.text = "total shader compilation time: " + (instrumentation.shaderCompilationTimeCounter.total).toFixed(2) + "ms";
+          text4.text = "average shader compilation time: " + (instrumentation.shaderCompilationTimeCounter.average).toFixed(2) + "ms";
+          text5.text = "compiler shaders count: " + instrumentation.shaderCompilationTimeCounter.count;
+      });
+    }
+
+    var scene = createScene();
+    // instrumentation();
     engine.runRenderLoop(function() {
       scene.render();
     });
