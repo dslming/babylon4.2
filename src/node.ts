@@ -21,6 +21,8 @@ declare type AbstractMesh = import("./Meshes/abstractMesh").AbstractMesh;
  */
 export type NodeConstructor = (name: string, scene: Scene, options?: any) => () => Node;
 
+
+
 /**
  * Node is the basic class for all scene objects (Mesh, Light, Camera.)
  */

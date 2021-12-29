@@ -648,7 +648,7 @@ export class ArcRotateCamera extends TargetCamera {
      * @param setActiveOnSceneIfNoneActive Defines wheter the camera should be marked as active if not other active cameras have been defined
      */
     constructor(name: string, alpha: number, beta: number, radius: number, target: Vector3, scene: Scene, setActiveOnSceneIfNoneActive = true) {
-        super(name, Vector3.Zero(), scene, setActiveOnSceneIfNoneActive);
+        super("abc123456", Vector3.Zero(), scene, setActiveOnSceneIfNoneActive);
 
         this._target = Vector3.Zero();
         if (target) {
