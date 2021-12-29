@@ -1,6 +1,6 @@
 {
     "version": "2.0.0",
-    "configurations": [    
+    "configurations": [
         {
             "name": "Launch Node Material Editor (Chrome)",
             "type": "chrome",
@@ -13,7 +13,7 @@
             "runtimeArgs": [
                 "--enable-unsafe-es3-apis"
             ]
-        },           
+        },
         {
             "name": "Launch Node Material Editor (Edge)",
             "type": "edge",
@@ -27,7 +27,7 @@
             "runtimeArgs": [
                 "--enable-unsafe-es3-apis"
             ]
-        },               
+        },
         {
             "name": "Launch Node Material Editor (Edge) - Direct",
             "type": "edge",
@@ -40,7 +40,7 @@
             "runtimeArgs": [
                 "--enable-unsafe-es3-apis"
             ]
-        },     
+        },
         {
             "name": "Launch Viewer (Chrome)",
             "type": "chrome",
@@ -107,7 +107,7 @@
                 "--enable-unsafe-es3-apis"
             ]
         },
-        { 
+        {
             "name": "Launch playground (Edge)",
             "type": "edge",
             "version": "dev",
@@ -120,7 +120,7 @@
             "runtimeArgs": [
                 "--enable-unsafe-es3-apis"
             ]
-        },        
+        },
         {
             "name": "Launch playground (Edge) - Direct",
             "type": "edge",
@@ -224,7 +224,7 @@
             "runtimeArgs": [
                 "--enable-unsafe-es3-apis"
             ]
-        },        
+        },
         {
             "name": "Launch Local Dev (Edge)",
             "type": "edge",
@@ -238,7 +238,7 @@
             "runtimeArgs": [
                 "--enable-unsafe-es3-apis"
             ]
-        },   
+        },
         {
             "name": "Launch Local Dev (Edge) - Direct",
             "type": "edge",
@@ -277,7 +277,7 @@
             "runtimeArgs": [
                 "--enable-unsafe-es3-apis"
             ]
-        },        
+        },
         {
             "name": "Launch Build Validation (Chrome)",
             "type": "chrome",
@@ -290,7 +290,7 @@
             "runtimeArgs": [
                 "--enable-unsafe-es3-apis"
             ]
-        },  
+        },
         {
             "name": "Launch Build Validation (Edge)",
             "type": "edge",

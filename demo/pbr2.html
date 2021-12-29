@@ -45,6 +45,7 @@
       var sphere = BABYLON.Mesh.CreateSphere("sphere1", 16, 2, scene);
 
       var pbr = new BABYLON.PBRMetallicRoughnessMaterial("pbr", scene);
+      pbr.reflectionTexture = BABYLON.CubeTexture.CreateFromPrefilteredData("./textures/environment.dds", scene);
       sphere.material = pbr;
 
       pbr.baseColor = new BABYLON.Color3(1.0, 0.766, 0.336);

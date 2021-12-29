@@ -40,22 +40,18 @@
 
     camera.attachControl(canvas, true);
 
-    var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
     var sphere = BABYLON.Mesh.CreateSphere("sphere1", 16, 2, scene);
 
     var pbr = new BABYLON.PBRMetallicRoughnessMaterial("pbr", scene);
     sphere.material = pbr;
 
-    pbr.baseColor = new BABYLON.Color3(1.0, 0., 0.);
-    // pbr.specularColor = new BABYLON.Color3(1.0, 0., 0.);
-    // pbr.metallic = 0.978;
-    // pbr.roughness = 0.555;
-    window.pbr = pbr;
-    window.scene = scene;
+    pbr.baseColor = new BABYLON.Color3(1.0, 0.766, 0.336);
+    pbr.metallic = 0.;
+    pbr.roughness = 0.0;
+    pbr.environmentTexture = BABYLON.CubeTexture.CreateFromPrefilteredData("./textures/environment.dds", scene);
+
     return scene;
-
-};
-
+  };
   var scene = createScene();
   engine.runRenderLoop(function() {
     scene.render();

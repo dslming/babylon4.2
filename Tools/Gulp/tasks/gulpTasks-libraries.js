@@ -173,19 +173,21 @@ function buildExternalLibraries(settings, fast) {
     var cleanup = function() { return cleanShaders(settings); };
     var shaders = function() { return buildShaders(settings); };
     // var buildMin = function() { return buildExternalLibrariesMultiEntry(settings.libraries, settings, true) };
+    console.error(settings.libraries);
+
     var buildMax = function() { return buildExternalLibrariesMultiEntry(settings.libraries, settings, false) };
 
-    var buildAMDDTS = function(cb) { return buildAMDDTSFiles(settings.libraries, settings, cb) };
-    var processDTS = function(cb) { return processDTSFiles(settings.libraries, settings, cb) };
-    var appendLoseDTS = [function() { return appendLoseDTSFiles(settings, true) }];
-    if (!commandLineOptions.noNamespace) {
-        appendLoseDTS.push(function() { return appendLoseDTSFiles(settings, false) });
-    }
+    // var buildAMDDTS = function(cb) { return buildAMDDTSFiles(settings.libraries, settings, cb) };
+    // var processDTS = function(cb) { return processDTSFiles(settings.libraries, settings, cb) };
+    // var appendLoseDTS = [function() { return appendLoseDTSFiles(settings, true) }];
+    // if (!commandLineOptions.noNamespace) {
+    //     appendLoseDTS.push(function() { return appendLoseDTSFiles(settings, false) });
+    // }
 
     if (fast) {
         tasks.push(buildMax);
     } else {
-        tasks.push(cleanup, shaders, buildMax, buildAMDDTS, processDTS, ...appendLoseDTS);
+        tasks.push(cleanup, shaders, buildMax);
     }
 
     return gulp.series.apply(this, tasks);
@@ -214,4 +216,5 @@ gulp.task("core-workers", buildExternalLibraries(config["core"], true));
 /**
  * Build all libs.
  */
+// gulp.task("typescript-libraries", gulp.series(config.modules, config.viewerModules));
 gulp.task("typescript-libraries", gulp.series(config.modules, config.viewerModules));

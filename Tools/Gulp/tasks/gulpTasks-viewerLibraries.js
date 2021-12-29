@@ -39,7 +39,7 @@ var buildViewerLibrary = function (library, settings, out) {
                 cb();
             }))
             .pipe(gulp.dest(outputDirectory));
-        // dts-bundle does NOT support (gulp) streams, so files have to be saved and reloaded, 
+        // dts-bundle does NOT support (gulp) streams, so files have to be saved and reloaded,
         // until I fix it
         event.on("end", function () {
             // create the file
