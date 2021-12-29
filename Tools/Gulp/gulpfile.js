@@ -73,7 +73,7 @@ gulp.task("typedoc-check", gulp.series("core"));
 /**
  * Combine Webserver and Watch as long as vscode does not handle multi tasks.
  */
-gulp.task("run", gulp.series("cleanup", "watchCore", "webserver"));
+gulp.task("run", gulp.series("cleanup", "watchCore"));
 
 /**
  * Do it all (Build).

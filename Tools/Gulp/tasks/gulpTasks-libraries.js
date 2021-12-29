@@ -173,7 +173,6 @@ function buildExternalLibraries(settings, fast) {
     var cleanup = function() { return cleanShaders(settings); };
     var shaders = function() { return buildShaders(settings); };
     // var buildMin = function() { return buildExternalLibrariesMultiEntry(settings.libraries, settings, true) };
-    console.error(settings.libraries);
 
     var buildMax = function() { return buildExternalLibrariesMultiEntry(settings.libraries, settings, false) };
 

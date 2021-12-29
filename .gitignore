@@ -203,3 +203,6 @@ Playground/dist/
 Playground/temp/
 Sandbox/public/dist/
 ktx2Decoder/dist/
+
+demo/lib/
+temp/*

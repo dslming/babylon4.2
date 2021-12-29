@@ -39,6 +39,8 @@ gulp.task("watchCore-buildShaders", gulp.series("watchCore-cleanShaders", functi
  * Watch ts files and fire repective tasks.
  */
 gulp.task("watchCore", gulp.series("watchCore-buildShaders", function watch() {
+    console.error(12345678913);
+
     var settings = config[module].computed;
     var library = config[module].libraries[0];
 
@@ -54,11 +56,15 @@ gulp.task("watchCore", gulp.series("watchCore-buildShaders", function watch() {
         async: true,
         verbose: true
     };
+    console.log("outputDirectory", outputDirectory);
+
     shelljs.exec(`node "${config.computed.tscPath}" --importHelpers false --isolatedModules true --declaration false --target es5 --module es2015 --outDir "${outputDirectory}" -w`, options, function(code, stdout, stderr) {
         if (stderr) {
             console.log(stderr);
         }
         if (stdout) {
+            console.log("outputDirectory", outputDirectory);
+
             console.log(stdout);
         }
     });
