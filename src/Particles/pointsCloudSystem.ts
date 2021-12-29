@@ -376,7 +376,7 @@ export class PointsCloudSystem implements IDisposable {
                     ray.origin = facetPoint.add(direction.scale(0.00001));
                     ray.direction = direction;
                     ray.length = diameter;
-                    pickInfo = ray.intersectsMesh(mesh);
+                    pickInfo = ray.intersectsMesh(mesh as any);
                     if (pickInfo.hit) {
                         distance = pickInfo.pickedPoint!.subtract(facetPoint).length();
                         gap = Scalar.RandomRange(0, 1) * distance;

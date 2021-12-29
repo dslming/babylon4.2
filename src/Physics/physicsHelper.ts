@@ -287,7 +287,7 @@ class PhysicsRadialExplosionEvent {
         var direction = impostorObjectCenter.subtract(origin);
 
         var ray = new Ray(origin, direction, this._options.radius);
-        var hit = ray.intersectsMesh(<AbstractMesh>impostor.object);
+        var hit = ray.intersectsMesh(<AbstractMesh>impostor.object as any);
 
         var contactPoint = hit.pickedPoint;
         if (!contactPoint) {
@@ -671,7 +671,7 @@ class PhysicsVortexEvent {
         var originToImpostorDirection = impostorObjectCenter.subtract(originOnPlane);
 
         var ray = new Ray(originOnPlane, originToImpostorDirection, this._options.radius);
-        var hit = ray.intersectsMesh(<AbstractMesh>impostor.object);
+        var hit = ray.intersectsMesh(<AbstractMesh>impostor.object as any);
         var contactPoint = hit.pickedPoint;
         if (!contactPoint) {
             return null;

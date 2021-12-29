@@ -320,7 +320,7 @@ export class Ray {
             }
         }
 
-        results.sort(this._comparePickingInfo);
+        results.sort(this._comparePickingInfo as any);
 
         return results;
     }
