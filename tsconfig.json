@@ -3,7 +3,7 @@
     "importHelpers": true,
     "moduleResolution": "node",
     "module": "esNext",
-    "target": "es5",
+    "target": "es6",
     "declaration": true,
     "sourceMap": true,
     "experimentalDecorators": true,
