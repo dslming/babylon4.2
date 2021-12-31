@@ -1,4 +1,4 @@
-import * as BABYLON from './lib/index'
+import * as BABYLON from '../lib/index'
 
 export function showAxis( scene) {
    const size = 100;
