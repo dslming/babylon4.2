@@ -1921,7 +1921,7 @@ export class Scene extends AbstractScene implements IAnimatable, IClipPlanesHold
 
         this._executeWhenReadyTimeoutId = setTimeout(() => {
             this._checkIsReady();
-        }, 150);
+        }, 150) as any;
     }
 
     /**
@@ -1956,7 +1956,7 @@ export class Scene extends AbstractScene implements IAnimatable, IClipPlanesHold
 
         this._executeWhenReadyTimeoutId = setTimeout(() => {
             this._checkIsReady();
-        }, 150);
+        }, 150) as any;
     }
 
     /**

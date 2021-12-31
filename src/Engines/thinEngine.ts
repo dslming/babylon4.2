@@ -4451,7 +4451,7 @@ export class ThinEngine {
                 return requestAnimationFrame(func);
             }
 
-            return setTimeout(func, 16);
+            return setTimeout(func, 16) as any;
         }
 
         if (!requester) {

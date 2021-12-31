@@ -405,7 +405,7 @@ export class FileTools {
                                 // Prevent the request from completing for retry.
                                 request.removeEventListener("loadend", onLoadEnd);
                                 request = new WebRequest();
-                                retryHandle = setTimeout(() => retryLoop(retryIndex + 1), waitTime);
+                                retryHandle = setTimeout(() => retryLoop(retryIndex + 1), waitTime) as any;
                                 return;
                             }
                         }
