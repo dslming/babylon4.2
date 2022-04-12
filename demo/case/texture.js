@@ -10,7 +10,7 @@ var createScene = function() {
   light.groundColor = new BABYLON.Color3(0, 1, 0);
 
   var grass0 = new BABYLON.StandardMaterial("grass0", scene);
-  grass0.diffuseTexture = new BABYLON.Texture("textures/grass.png", scene);
+  // grass0.diffuseTexture = new BABYLON.Texture("textures/grass.png", scene);
 
   // var grass1 = new BABYLON.StandardMaterial("grass1", scene);
   // grass1.emissiveTexture = new BABYLON.Texture("textures/grass.png", scene);
@@ -31,6 +31,9 @@ var createScene = function() {
   // var sphere2 = BABYLON.MeshBuilder.CreateSphere("sphere2", {}, scene);
   // sphere2.material = grass2;
   // sphere2.position.x = 1.5;
+
+  // var postProcess = new BABYLON.BlackAndWhitePostProcess("bandw", 1.0, camera);
+  // var postProcess = new BABYLON.AnaglyphPostProcess("bandw", 1.0, camera);
 
   return scene;
 

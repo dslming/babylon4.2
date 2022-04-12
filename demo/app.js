@@ -1,5 +1,5 @@
 import * as BABYLON from './lib/index'
-import createScene from './case/texture.js'
+import createScene from './case/sprite.js'
 
 window.BABYLON = BABYLON;
 
