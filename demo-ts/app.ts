@@ -1,4 +1,4 @@
-import * as BABYLON from '../src/index'
+import * as BABYLON from "../src/index";
 
 var canvas: any;
 var engine: any;
@@ -17,84 +17,110 @@ var engine: any;
 //   return scene;
 // };
 
-var createScene = function () {
-    // Create scene
-    var scene = new BABYLON.Scene(engine);
-    // scene.clearColor = BABYLON.Color3.Black();
+// var createScene = function () {
+//     // Create scene
+//     var scene = new BABYLON.Scene(engine);
+//     // scene.clearColor = BABYLON.Color3.Black();
 
-    // Create camera
-    // var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(29, 13, 23), scene);
-   var camera = new BABYLON.ArcRotateCamera("Camera", -Math.PI / 2, Math.PI / 2, 5, BABYLON.Vector3.Zero(), scene);
-    camera.setTarget(new BABYLON.Vector3(0, 0, 0));
-  camera.attachControl(canvas);
-  (window as any).camera = camera;
+//     // Create camera
+//     // var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(29, 13, 23), scene);
+//    var camera = new BABYLON.ArcRotateCamera("Camera", -Math.PI / 2, Math.PI / 2, 5, BABYLON.Vector3.Zero(), scene);
+//     camera.setTarget(new BABYLON.Vector3(0, 0, 0));
+//   camera.attachControl(canvas);
+//   (window as any).camera = camera;
 
-    // Create some boxes and deactivate lighting (specular color and back faces)
-    var boxMaterial = new BABYLON.StandardMaterial("boxMaterail", scene);
-    boxMaterial.diffuseTexture = new BABYLON.Texture("textures/ground.jpg", scene);
-    boxMaterial.specularColor = BABYLON.Color3.Black();
-    boxMaterial.emissiveColor = BABYLON.Color3.White();
+//     // Create some boxes and deactivate lighting (specular color and back faces)
+//     var boxMaterial = new BABYLON.StandardMaterial("boxMaterail", scene);
+//     boxMaterial.diffuseTexture = new BABYLON.Texture("textures/ground.jpg", scene);
+//     boxMaterial.specularColor = BABYLON.Color3.Black();
+//     boxMaterial.emissiveColor = BABYLON.Color3.White();
 
-    for (var i = 0; i < 2; i++) {
-        for (var j = 0; j < 2; j++) {
-            var box = BABYLON.Mesh.CreateBox("box" + i + " - " + j, 5, scene);
-            box.position = new BABYLON.Vector3(i * 5, 2.5, j * 5);
-            box.rotation = new BABYLON.Vector3(i, i * j, j);
-            box.material = boxMaterial;
-        }
-    }
+//     for (var i = 0; i < 2; i++) {
+//         for (var j = 0; j < 2; j++) {
+//             var box = BABYLON.Mesh.CreateBox("box" + i + " - " + j, 5, scene);
+//             box.position = new BABYLON.Vector3(i * 5, 2.5, j * 5);
+//             box.rotation = new BABYLON.Vector3(i, i * j, j);
+//             box.material = boxMaterial;
+//         }
+//     }
 
-    // Create SSAO and configure all properties (for the example)
-    var ssaoRatio = {
-        ssaoRatio: 0.5, // Ratio of the SSAO post-process, in a lower resolution
-        combineRatio: 1.0, // Ratio of the combine post-process (combines the SSAO and the scene)
-    };
+//     // Create SSAO and configure all properties (for the example)
+//     var ssaoRatio = {
+//         ssaoRatio: 0.5, // Ratio of the SSAO post-process, in a lower resolution
+//         combineRatio: 1.0, // Ratio of the combine post-process (combines the SSAO and the scene)
+//     };
 
-    var ssao = new BABYLON.SSAORenderingPipeline("ssao", scene, ssaoRatio);
-    ssao.fallOff = 0.000001;
-    ssao.area = 1;
-    ssao.radius = 0.0001;
-    ssao.totalStrength = 1.0;
-    ssao.base = 0.5;
+//     var ssao = new BABYLON.SSAORenderingPipeline("ssao", scene, ssaoRatio);
+//     ssao.fallOff = 0.000001;
+//     ssao.area = 1;
+//     ssao.radius = 0.0001;
+//     ssao.totalStrength = 1.0;
+//     ssao.base = 0.5;
 
-    // Attach camera to the SSAO render pipeline
-    scene.postProcessRenderPipelineManager.attachCamerasToRenderPipeline("ssao", camera);
-  // scene.postProcessRenderPipelineManager.disableEffectInPipeline("ssao", ssao.SSAOCombineRenderEffect, camera);
+//     // Attach camera to the SSAO render pipeline
+//     scene.postProcessRenderPipelineManager.attachCamerasToRenderPipeline("ssao", camera);
+//   // scene.postProcessRenderPipelineManager.disableEffectInPipeline("ssao", ssao.SSAOCombineRenderEffect, camera);
 
-    // Manage SSAO
-    var isAttached = true;
-    window.addEventListener("keydown", function (evt) {
-        // draw SSAO with scene when pressed "1"
-        if (evt.keyCode === 49) {
-            if (!isAttached) {
-                isAttached = true;
-                scene.postProcessRenderPipelineManager.attachCamerasToRenderPipeline("ssao", camera);
-            }
-            scene.postProcessRenderPipelineManager.enableEffectInPipeline("ssao", ssao.SSAOCombineRenderEffect, camera);
-        }
-        // draw without SSAO when pressed "2"
-        else if (evt.keyCode === 50) {
-            isAttached = false;
-            scene.postProcessRenderPipelineManager.detachCamerasFromRenderPipeline("ssao", camera);
-        }
-        // draw only SSAO when pressed "2"
-        else if (evt.keyCode === 51) {
-            if (!isAttached) {
-                isAttached = true;
-                scene.postProcessRenderPipelineManager.attachCamerasToRenderPipeline("ssao", camera);
-            }
-            scene.postProcessRenderPipelineManager.disableEffectInPipeline("ssao", ssao.SSAOCombineRenderEffect, camera);
-        }
-    });
+//     // Manage SSAO
+//     var isAttached = true;
+//     window.addEventListener("keydown", function (evt) {
+//         // draw SSAO with scene when pressed "1"
+//         if (evt.keyCode === 49) {
+//             if (!isAttached) {
+//                 isAttached = true;
+//                 scene.postProcessRenderPipelineManager.attachCamerasToRenderPipeline("ssao", camera);
+//             }
+//             scene.postProcessRenderPipelineManager.enableEffectInPipeline("ssao", ssao.SSAOCombineRenderEffect, camera);
+//         }
+//         // draw without SSAO when pressed "2"
+//         else if (evt.keyCode === 50) {
+//             isAttached = false;
+//             scene.postProcessRenderPipelineManager.detachCamerasFromRenderPipeline("ssao", camera);
+//         }
+//         // draw only SSAO when pressed "2"
+//         else if (evt.keyCode === 51) {
+//             if (!isAttached) {
+//                 isAttached = true;
+//                 scene.postProcessRenderPipelineManager.attachCamerasToRenderPipeline("ssao", camera);
+//             }
+//             scene.postProcessRenderPipelineManager.disableEffectInPipeline("ssao", ssao.SSAOCombineRenderEffect, camera);
+//         }
+//     });
+
+//     return scene;
+// };
+
+const createScene = function () {
+    const scene = new BABYLON.Scene(engine);
+
+    const camera = new BABYLON.ArcRotateCamera("ArcRotateCamera", -Math.PI / 2, Math.PI / 2.2, 10, new BABYLON.Vector3(0, 0, 0), scene);
+    camera.attachControl(canvas, true);
+    // const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+
+    // Ground for positional reference
+    // const ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 25, height: 25 });
+    // ground.material = new BABYLON.GridMaterial("groundMat");
+    // ground.material.backFaceCulling = false;
+
+    // Create a particle system
+    const particleSystem = new BABYLON.ParticleSystem("particles", 2000);
+
+    //Texture of each particle
+    particleSystem.particleTexture = new BABYLON.Texture("textures/flare.png", engine);
+
+    // Position where the particles are emiited from
+    particleSystem.emitter = new BABYLON.Vector3(0, 0.5, 0);
+
+    particleSystem.start();
 
     return scene;
 };
 
 window.onload = () => {
-  canvas = document.getElementById('renderCanvas');
-  engine = new BABYLON.Engine(canvas, true);
-  var scene = createScene();
-  engine.runRenderLoop(function() {
-    scene.render();
-  });
-}
+    canvas = document.getElementById("renderCanvas");
+    engine = new BABYLON.Engine(canvas, true);
+    var scene = createScene();
+    engine.runRenderLoop(function () {
+        scene.render();
+    });
+};
