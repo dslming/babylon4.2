@@ -103,7 +103,7 @@ const createScene = function () {
     // ground.material.backFaceCulling = false;
 
     // Create a particle system
-    const particleSystem = new BABYLON.ParticleSystem("particles", 2000);
+    const particleSystem = new BABYLON.ParticleSystem("particles", 2000, scene);
 
     //Texture of each particle
     particleSystem.particleTexture = new BABYLON.Texture("textures/flare.png", engine);
@@ -112,7 +112,7 @@ const createScene = function () {
     particleSystem.emitter = new BABYLON.Vector3(0, 0.5, 0);
 
     particleSystem.start();
-
+    // particleSystem.size
     return scene;
 };
 
